@@ -6,6 +6,13 @@ export class User implements Prisma.UserUncheckedCreateInput{
     birthdate: number;
     document: string;
     acceptedTerms: boolean;
+    zipcode:number;
+    //street: string;
+    //neighborhood: string;
+    //city: string;
+   // state: string;
+    
+    
 }
 
 

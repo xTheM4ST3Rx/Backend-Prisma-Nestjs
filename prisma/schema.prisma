@@ -15,7 +15,7 @@ model User {
   birthdate Int?
   document String?
   acceptedTerms Boolean?
-  zipcode Int?
+  zipcode Int
   street String?
   neighborhood String?
   city String?
