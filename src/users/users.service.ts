@@ -8,62 +8,31 @@ export class UsersService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
-    //return this.prisma.user.create({data: { name: 'Bob', email: 'bob@prisma.io' }});
+  create(data: CreateUserDto) {
+    return this.prisma.user.create({data});
   }
 
   findAll() {
     return this.prisma.user.findMany({});
   }
 
-  findOne(id: number) {
-    return this.prisma.user.findOne({});
+  findOne(id: string) {
+    return this.prisma.user.findUnique({
+      where:{ id },
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserDto: UpdateUserDto) {
+    return this.prisma.user.update({
+      where:{ id },
+      data: updateUserDto
+    })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    return this.prisma.user.delete({
+      where:{ id },
+    });
   }
+
 }
-
-
-/*
-
-create(createUserDto: CreateUserDto) {
-  const user = new this.userModel(createUserDto)
-  return user.save();
-}
-
-
-findAll() {
-  return this.userModel.find();
-}
-
-
-findOne(id: string) {
-  return this.userModel.findById(id);
-}
-
-
-
-update(id: string, updateUserDto: UpdateUserDto) {
-  return this.userModel.findByIdAndUpdate({
-    _id:id
-  },
-  {
-    $set: updateUserDto
-  },
-  {
-    new: true
-  });
-}
-
-remove(id: string) {
-  return this.userModel.deleteOne({_id:id}).exec();
-}
-}
-
-*/
